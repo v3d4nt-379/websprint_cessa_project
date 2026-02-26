@@ -1,4 +1,6 @@
 // Core DOM references
+const heroSection = document.getElementById("hero");
+const heroBg = document.querySelector(".hero-bg");
 const enterArenaBtn = document.getElementById("enterArenaBtn");
 const gamesSection = document.getElementById("games");
 const form = document.getElementById("playerForm");
@@ -32,6 +34,27 @@ function setFormStatus(type, message) {
   }
 }
 
+// Animate a number from 0 up to targetScore
+function animateScore(element, targetScore) {
+  let start = 0;
+  const duration = 700;
+  const startTime = performance.now();
+
+  function frame(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(start + (targetScore - start) * eased);
+    element.textContent = current;
+
+    if (progress < 1) {
+      requestAnimationFrame(frame);
+    }
+  }
+
+  requestAnimationFrame(frame);
+}
+
 // Add a new player to the leaderboard, sort, and re-render
 function addToLeaderboard(name) {
   const score = Math.floor(Math.random() * 101); // 0-100 inclusive
@@ -40,18 +63,11 @@ function addToLeaderboard(name) {
 
   leaderboardEntries.sort((a, b) => b.score - a.score);
 
-  renderLeaderboard();
-
-  // Briefly highlight the top row to show change
-  const firstRow = leaderboardList.querySelector(".leaderboard-row");
-  if (firstRow) {
-    firstRow.classList.add("highlight");
-    setTimeout(() => firstRow.classList.remove("highlight"), 1000);
-  }
+  renderLeaderboard(true);
 }
 
 // Render the leaderboard list from state
-function renderLeaderboard() {
+function renderLeaderboard(animateLatest = false) {
   leaderboardList.innerHTML = "";
 
   if (leaderboardEntries.length === 0) {
@@ -75,11 +91,24 @@ function renderLeaderboard() {
 
     const scoreSpan = document.createElement("span");
     scoreSpan.className = "leaderboard-score";
-    scoreSpan.textContent = entry.score;
+
+    if (animateLatest && index === 0) {
+      animateScore(scoreSpan, entry.score);
+    } else {
+      scoreSpan.textContent = entry.score;
+    }
 
     li.append(rankSpan, nameSpan, scoreSpan);
     leaderboardList.appendChild(li);
   });
+
+  if (animateLatest) {
+    const firstRow = leaderboardList.querySelector(".leaderboard-row");
+    if (firstRow) {
+      firstRow.classList.add("highlight");
+      setTimeout(() => firstRow.classList.remove("highlight"), 1000);
+    }
+  }
 }
 
 // Form submission handler
@@ -138,8 +167,71 @@ function setupScrollAnimations() {
   targets.forEach((el) => observer.observe(el));
 }
 
+// Background parallax for hero
+function setupHeroParallax() {
+  if (!heroSection || !heroBg) return;
+
+  let ticking = false;
+
+  function updateParallax() {
+    const rect = heroSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+    const progress = Math.min(Math.max(-rect.top / windowHeight, 0), 1);
+
+    const translateY = progress * 40; // pixels
+    const scale = 1.08 + progress * 0.06;
+
+    heroBg.style.transform = `translateY(${translateY}px) scale(${scale})`;
+    ticking = false;
+  }
+
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(updateParallax);
+      ticking = true;
+    }
+  }
+
+  updateParallax();
+  window.addEventListener("scroll", onScroll);
+}
+
+// 3D tilt effect for game cards
+function setupCardTilt() {
+  const cards = document.querySelectorAll(".game-card");
+  if (!cards.length) return;
+
+  const maxTilt = 10; // degrees
+
+  cards.forEach((card) => {
+    card.addEventListener("mousemove", (event) => {
+      const rect = card.getBoundingClientRect();
+      const x = event.clientX - rect.left;
+      const y = event.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const percentX = (x - centerX) / centerX;
+      const percentY = (y - centerY) / centerY;
+
+      const rotateX = -percentY * maxTilt;
+      const rotateY = percentX * maxTilt;
+
+      card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-4px) scale(1.02)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+  });
+}
+
 // Wire up events once DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
+  if (heroSection) {
+    heroSection.classList.add("loaded");
+  }
+
   if (enterArenaBtn && gamesSection) {
     enterArenaBtn.addEventListener("click", () => smoothScrollTo(gamesSection));
   }
@@ -161,6 +253,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   setupScrollAnimations();
+  setupHeroParallax();
+  setupCardTilt();
 
   if (currentYearSpan) {
     currentYearSpan.textContent = new Date().getFullYear().toString();

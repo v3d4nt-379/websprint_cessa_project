@@ -172,6 +172,30 @@ input {
   overflow: hidden;
 }
 
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(3, 0, 10, 0.95)),
+    url("assets/arena-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: grayscale(0.15) contrast(1.15) brightness(0.65);
+  transform: scale(1.08);
+  transform-origin: center;
+  transition:
+    transform 1200ms ease-out,
+    filter 900ms ease-out,
+    opacity 900ms ease-out;
+  opacity: 0;
+  z-index: -3;
+}
+
+.hero.loaded .hero-bg {
+  opacity: 1;
+  filter: grayscale(0.08) contrast(1.08) brightness(0.8);
+}
+
 .hero-overlay {
   position: absolute;
   inset: 0;
@@ -565,11 +589,12 @@ input {
   gap: 0.8rem;
   transform-origin: center;
   transition:
-    transform 160ms ease,
-    box-shadow 180ms ease,
-    border-color 180ms ease,
+    transform 180ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease,
     background 220ms ease,
-    translate 160ms ease;
+    translate 180ms ease;
+  will-change: transform, box-shadow;
 }
 
 .game-card-header {
@@ -614,7 +639,7 @@ input {
 }
 
 .game-card:hover {
-  transform: translateY(-4px) scale(1.01);
+  transform: translateY(-4px) scale(1.02);
   translate: 0 -1px;
   border-color: rgba(255, 0, 140, 0.7);
   box-shadow:
