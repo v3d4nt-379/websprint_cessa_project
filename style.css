@@ -172,11 +172,19 @@ input {
   overflow: hidden;
 }
 
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  opacity: 0.9;
+}
+
 .hero-bg {
   position: absolute;
   inset: 0;
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(3, 0, 10, 0.95)),
-    url("assets/arena-bg.jpg");
+    url("assets/arena.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
