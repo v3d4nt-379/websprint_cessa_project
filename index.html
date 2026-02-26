@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LAST PROTOCOL - Survival Arena</title>
+
+  <!-- Typography -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=Archivo:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="logo-mark">
+        <span class="logo-symbol">LP</span>
+        <span class="logo-text">Last Protocol</span>
+      </div>
+
+      <nav class="main-nav">
+        <a href="#games" class="nav-link">Games</a>
+        <a href="#register" class="nav-link">Register</a>
+        <a href="#leaderboard" class="nav-link">Leaderboard</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero section" id="hero">
+      <div class="hero-overlay"></div>
+      <div class="container hero-content fade-in-on-scroll">
+        <div class="hero-copy">
+          <p class="hero-kicker">Season 07 // Access Granted</p>
+          <h1 class="hero-title">LAST <span>PROTOCOL</span></h1>
+          <p class="hero-tagline">Only the sharpest survive.</p>
+          <p class="hero-subcopy">
+            24 hours. 4 arenas. Zero second chances. Decode, outplay, and outlast
+            every other contender in a live technical survival event.
+          </p>
+          <button class="btn btn-primary" id="enterArenaBtn">
+            Enter Arena
+            <span class="btn-glow"></span>
+          </button>
+          <div class="hero-meta">
+            <span class="chip chip-live">Live</span>
+            <span class="chip">Global participants</span>
+            <span class="chip">Front-end only</span>
+          </div>
+        </div>
+
+        <div class="hero-panel">
+          <div class="status-card glass fade-in-on-scroll">
+            <h2 class="status-title">Arena Telemetry</h2>
+            <ul class="status-list">
+              <li>
+                <span class="label">Active slots</span>
+                <span class="value" id="slotsCount">128</span>
+              </li>
+              <li>
+                <span class="label">Average survival</span>
+                <span class="value">74.3 sec</span>
+              </li>
+              <li>
+                <span class="label">Risk level</span>
+                <span class="value value-danger">CRITICAL</span>
+              </li>
+            </ul>
+          </div>
+          <div class="hero-grid">
+            <div class="hero-grid-item neon-border fade-in-on-scroll">
+              <span class="hero-metric-label">Latency to fail</span>
+              <span class="hero-metric">0.37s</span>
+            </div>
+            <div class="hero-grid-item neon-border fade-in-on-scroll">
+              <span class="hero-metric-label">Protocol breaches</span>
+              <span class="hero-metric">42</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator">
+        <span class="scroll-text">Scroll to arenas</span>
+        <span class="scroll-line"></span>
+      </div>
+    </section>
+
+    <!-- GAMES SECTION -->
+    <section class="section games-section" id="games">
+      <div class="container">
+        <header class="section-header fade-in-on-scroll">
+          <p class="eyebrow">Arena Protocols</p>
+          <h2>Survival Modules</h2>
+          <p class="section-subtitle">
+            Each arena is engineered to isolate a different survival instinct:
+            speed, perception, precision, and control.
+          </p>
+        </header>
+
+        <div class="game-grid">
+          <article class="game-card fade-in-on-scroll">
+            <div class="game-card-header">
+              <span class="game-tag">Protocol // 01</span>
+              <h3>DOM Extraction</h3>
+            </div>
+            <p class="game-desc">
+              Navigate an unstable DOM forest where elements shift on every tick.
+              Track, isolate, and manipulate targets before the layout fractures.
+            </p>
+            <ul class="game-meta">
+              <li>Focus: Query logic</li>
+              <li>Time limit: 90s</li>
+              <li>Risk: High</li>
+            </ul>
+          </article>
+
+          <article class="game-card fade-in-on-scroll">
+            <div class="game-card-header">
+              <span class="game-tag">Protocol // 02</span>
+              <h3>Packet Trace</h3>
+            </div>
+            <p class="game-desc">
+              Read live telemetry and decode hostile network events in real time.
+              Only precise event handling keeps your UI from total collapse.
+            </p>
+            <ul class="game-meta">
+              <li>Focus: Async control</li>
+              <li>Time limit: 120s</li>
+              <li>Risk: Critical</li>
+            </ul>
+          </article>
+
+          <article class="game-card fade-in-on-scroll">
+            <div class="game-card-header">
+              <span class="game-tag">Protocol // 03</span>
+              <h3>Gridlock</h3>
+            </div>
+            <p class="game-desc">
+              Rebuild a fractured layout across multiple breakpoints while the
+              viewport shifts against you. Every misalignment costs survival time.
+            </p>
+            <ul class="game-meta">
+              <li>Focus: Flex &amp; Grid</li>
+              <li>Time limit: 60s</li>
+              <li>Risk: Medium</li>
+            </ul>
+          </article>
+
+          <article class="game-card fade-in-on-scroll">
+            <div class="game-card-header">
+              <span class="game-tag">Protocol // 04</span>
+              <h3>Signal Noise</h3>
+            </div>
+            <p class="game-desc">
+              Maintain clarity under sensory overload. Build an interface that
+              stays legible as the system floods with decoys and motion.
+            </p>
+            <ul class="game-meta">
+              <li>Focus: UX under pressure</li>
+              <li>Time limit: 75s</li>
+              <li>Risk: Severe</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- PLAYER REGISTRATION -->
+    <section class="section register-section" id="register">
+      <div class="container register-grid">
+        <div class="register-copy fade-in-on-scroll">
+          <p class="eyebrow">Player Uplink</p>
+          <h2>Register for LAST PROTOCOL</h2>
+          <p class="section-subtitle">
+            Secure your slot in the arena. Once confirmed, your identifier is
+            injected directly into the live leaderboard.
+          </p>
+          <ul class="register-bullets">
+            <li>Instant placement on the survival board</li>
+            <li>Randomized initial score seed (0-100)</li>
+            <li>Sorted in real-time against other contenders</li>
+          </ul>
+        </div>
+
+        <div class="register-form-wrapper glass fade-in-on-scroll">
+          <form id="playerForm" novalidate>
+            <div class="form-field">
+              <label for="playerName">Codename</label>
+              <input
+                type="text"
+                id="playerName"
+                name="playerName"
+                autocomplete="off"
+                placeholder="Enter your arena codename"
+                required
+              />
+              <p class="input-hint">Visible on the public leaderboard.</p>
+            </div>
+
+            <div class="form-field">
+              <label for="playerEmail">Secure channel (email)</label>
+              <input
+                type="email"
+                id="playerEmail"
+                name="playerEmail"
+                autocomplete="off"
+                placeholder="you@example.com"
+                required
+              />
+              <p class="input-hint">Used for mission updates and results.</p>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+              Lock In Registration
+              <span class="btn-glow"></span>
+            </button>
+
+            <p id="formMessage" class="form-message" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEADERBOARD -->
+    <section class="section leaderboard-section" id="leaderboard">
+      <div class="container">
+        <header class="section-header fade-in-on-scroll">
+          <p class="eyebrow">Live Ranking Feed</p>
+          <h2>Survival Leaderboard</h2>
+          <p class="section-subtitle">
+            Scores are seeded on successful registration and sorted instantly.
+            Higher protocol integrity equals higher placement.
+          </p>
+        </header>
+
+        <div class="leaderboard-grid">
+          <div class="leaderboard-panel glass fade-in-on-scroll">
+            <div class="leaderboard-header">
+              <span class="col-rank">Rank</span>
+              <span class="col-name">Codename</span>
+              <span class="col-score">Score</span>
+            </div>
+            <ul id="leaderboardList" class="leaderboard-list">
+              <!-- Dynamic entries injected here -->
+            </ul>
+            <p class="leaderboard-empty" id="leaderboardEmpty">
+              No survivors yet. Register to claim the first slot.
+            </p>
+          </div>
+
+          <aside class="leaderboard-side fade-in-on-scroll">
+            <div class="side-card neon-border">
+              <h3>How scoring works</h3>
+              <p>
+                Every new player receives a randomized survival index between 0
+                and 100. As more contenders enter, the board reorders in
+                descending score.
+              </p>
+            </div>
+            <div class="side-card">
+              <h3>Optimize your odds</h3>
+              <ul class="tips-list">
+                <li>Think in systems, not screens.</li>
+                <li>Exploit the grid; control the chaos.</li>
+                <li>Make every interaction intentional.</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>LAST PROTOCOL &copy; <span id="currentYear"></span> &mdash; Front-end survival simulation.</p>
+      <p class="footer-meta">Built with HTML5 · CSS3 · Vanilla JavaScript</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
